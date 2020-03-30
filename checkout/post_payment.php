@@ -35,7 +35,7 @@ $payment = new MercadoPago\Payment();
 <body>
  <main class="page payment-page">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/checkout-api-mercadopago">
+      <a class="navbar-brand" href="/">
         <button type="button" class="btn btn-primary">Go back!</button>
       </a>
     </nav>
