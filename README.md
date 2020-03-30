@@ -15,10 +15,17 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Installing
 
-Clone the project on your server folder:
+Clone the project:
 
 ```
 $ git clone https://github.com/ebelisia/checkout-api-mercadopago-php
 ```
 
-Access localhost and done!
+Inside the project, type:
+
+```
+$ php -S localhost:8000 
+```
+
+
+Access localhost:8000 and done!
