@@ -2,7 +2,7 @@
 
 require_once '../vendor/autoload.php';
 
-MercadoPago\SDK::setAccessToken("TEST-2318480319735397-071217-715101e600b5c3f0043c10bd714cb71d-298946804");
+MercadoPago\SDK::setAccessToken("ACCESS_TOKEN");
 
 $payment = new MercadoPago\Payment();
 

@@ -1,3 +1,19 @@
+<?php
+
+require_once '../vendor/autoload.php';
+
+MercadoPago\SDK::setAccessToken("ACCESS_TOKEN");
+
+$preference = new MercadoPago\Preference();
+
+$item = new MercadoPago\Item();
+$item->title = 'Smartphone';
+$item->quantity = 1;
+$item->unit_price = 200;
+$preference->items = array($item);
+$preference->save();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -11,7 +27,6 @@
   <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
   <link rel="stylesheet" href="../public/css/checkcout.css">
-
 </head>
 
 <body>
@@ -23,7 +38,7 @@
 
           <p>This is an example of Mercado Pago integration API + Wallet Button</p>
         </div>
-        <form action="checkout/post_payment.php" method="POST" id="pay" name="pay">
+        <form action="/checkout/post_payment.php" method="post" id="pay" name="pay" class="form-payment">
           <div class="products">
             <h3 class="title">Itens</h3>
             <div class="item">
@@ -36,7 +51,7 @@
             <h3 class="title">Credit Card Details</h3>
             <div class="row">
               <div class="form-group col-sm-7">
-                <label for="cardholderName">Card Holder</label>
+                <label ffor="cardholderName">Card Holder</label>
                 <input id="cardholderName" data-checkout="cardholderName" type="text" class="form-control"
                   placeholder="Card Holder" aria-label="Card Holder" aria-describedby="basic-addon1">
                 <input data-checkout="docType" type="hidden" value="CPF" />
@@ -74,21 +89,26 @@
 
               <div class="form-group col-sm-12">
                 <input type="hidden" name="amount" id="amount" value="200" />
-                <button type="submit" class="btn btn-primary btn-block">Proceed</button>                
-              </div>
-            </div>
-          </div>
+                <button type="submit" class="btn btn-primary btn-block">Proceed</button>
+                <div class="text-center">Or</div>
         </form>
-
-      </div>
+        <form action="/processar_pagamento" method="POST">
+          <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
+            data-preference-id="<?php echo $preference->id;?>" data-button-label="Pagar com Mercado Pago">
+            </script>
+        </form>
     </section>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 </body>
 </body>
 
 </html>
 <script>
-    Mercadopago.setPublishableKey("TEST-99c6d09d-7dca-4c45-bffb-b9d69908b8be"); //INSIRA SUA PUBLIC KEY DISPONÍVEL EM: https://www.mercadopago.com/mlb/account/credentials
+    Mercadopago.setPublishableKey("PUBLIC_KEY"); //INSIRA SUA PUBLIC KEY DISPONÍVEL EM: https://www.mercadopago.com/mlb/account/credentials
   function addEvent(el, eventName, handler) {
     if (el.addEventListener) {
       el.addEventListener(eventName, handler);
